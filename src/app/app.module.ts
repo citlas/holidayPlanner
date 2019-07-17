@@ -9,21 +9,38 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 
 //angular material
-import { MatToolbarModule } from '@angular/material';
+import { MatToolbarModule, MatDatepickerModule, MatNativeDateModule, MatInputModule  } from '@angular/material';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    CalendarComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDatepickerModule, 
+    MatNativeDateModule,
+    MatFormFieldModule,
+    FormsModule, 
+    ReactiveFormsModule,
+    MatInputModule 
   ],
-  providers: [],
+  exports:[
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    BrowserAnimationsModule
+  ],
+  providers: [MatDatepickerModule ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
