@@ -16,12 +16,18 @@ export class CalendarComponent implements OnInit {
   }
 
  countDays():number{
-   this.totalDays = (this.myFinalDate.getTime()-this.myStartDate.getTime()/(1000 * 60 * 60 * 24))
-    return this.totalDays
+   //this.totalDays = Math.round(Math.abs((this.myFinalDate.valueOf()-this.myStartDate.valueOf())))
+   this.totalDays = this.myFinalDate.valueOf()-this.myStartDate.valueOf()
+    
+  
+    return Math.round(Math.abs((this.myFinalDate.valueOf()-this.myStartDate.valueOf())))
   }
 
   logit(){
     console.log("objeto" + this.myStartDate.getTime())
+    console.log("dif days" + this.countDays())
+    console.log((this.myFinalDate.getTime()-this.myStartDate.getTime()));
+    
   }
   constructor() { }
 
