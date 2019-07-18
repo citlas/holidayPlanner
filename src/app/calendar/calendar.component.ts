@@ -9,29 +9,43 @@ export class CalendarComponent implements OnInit {
   myStartDate: Date = new Date;
   myFinalDate: Date = new Date;
   totalDays: number = 0;
+  myStartDay: number = 0;
+  myFinalDay: number = 0;
+  daysToShow: Array<number> = []
+  dateArr = []
 
-  public onDate(event): void {
-    this.myFinalDate = event;
-    this.countDays();
+ countDays(){
+    var diff = Math.abs(this.myFinalDate.getTime()-this.myStartDate.getTime());
+    var diffDays = Math.ceil(diff / (1000 * 3600 * 24));
+    this.totalDays = diffDays+1
+    this.myStartDay = this.myStartDate.getUTCDate();
+    this.myFinalDay = this.myFinalDate.getUTCDate();
+    this.createAgenda(this.myStartDate,this.myFinalDate);
+    return this.totalDays  
   }
 
- countDays():number{
-   //this.totalDays = Math.round(Math.abs((this.myFinalDate.valueOf()-this.myStartDate.valueOf())))
-   this.totalDays = this.myFinalDate.valueOf()-this.myStartDate.valueOf()
+  createAgenda(start,end){
+    // date array
+  var getDateArray = function(start, end) {
+  var
+    arr = new Array(),
+    options:any = {month:'short',day:'numeric'},
+    dt = new Date(start);
+    end.setDate(end.getDate() + 1);
+  while (dt < end) {
+    arr.push(new Date(dt));
+    dt.setDate(dt.getDate() + 1);
+  }
+  return arr;
+}
+    this.dateArr = getDateArray(start, end);
+    console.log('these are the days to be created'+ this.dateArr);
     
+  }
   
-    return Math.round(Math.abs((this.myFinalDate.valueOf()-this.myStartDate.valueOf())))
-  }
-
-  logit(){
-    console.log("objeto" + this.myStartDate.getTime())
-    console.log("dif days" + this.countDays())
-    console.log((this.myFinalDate.getTime()-this.myStartDate.getTime()));
-    
-  }
   constructor() { }
 
   ngOnInit() {
   }
-
+  
 }

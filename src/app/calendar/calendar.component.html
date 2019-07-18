@@ -5,10 +5,9 @@
         <mat-datepicker #startDate></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
-        <input matInput [matDatepicker]="finalDate" placeholder="Choose a final date" [(ngModel)]="myFinalDate">
+        <input matInput [matDatepicker]="finalDate" placeholder="Choose a final date" [(ngModel)]="myFinalDate" (ngModelChange)="countDays()">
         <mat-datepicker-toggle matSuffix [for]="finalDate"></mat-datepicker-toggle>
-        <mat-datepicker #finalDate></mat-datepicker >
+        <mat-datepicker #finalDate ></mat-datepicker >
       </mat-form-field>
 </div>
-<div> Your start date is {{myStartDate | date: 'dd/MM/yyyy'}} and your final date is {{myFinalDate | date: 'dd/MM/yyyy'}} that is a total of {{totalDays}} days</div>
-<button (click)="logit()">log it</button>
+<div class="text-center"> Your start date is {{myStartDate | date: 'dd/MM/yyyy'}} and your final date is {{myFinalDate | date: 'dd/MM/yyyy'}} that is a total of {{totalDays}} days</div>
